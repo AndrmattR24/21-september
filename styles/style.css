@@ -123,6 +123,29 @@ body {
   color: #fff;
 }
 
+/* Estilos para hint de audio */
+.audio-hint {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.audio-hint span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 /* Estilos para controles de audio */
 .audio-controls {
   position: fixed;
@@ -172,6 +195,12 @@ body {
 
   .button a {
     font-size: 1.5rem;
+  }
+
+  .audio-hint {
+    top: 15px;
+    font-size: 12px;
+    padding: 8px 16px;
   }
 
   .audio-controls {
