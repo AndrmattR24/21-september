@@ -10,9 +10,16 @@
 
   <body>
     <audio
+      id="backgroundAudio"
       src="./assets/sounds/ChristianBasso&HaienQiu-Flowers.mp3"
-      autoplay
+      loop
+      preload="auto"
     ></audio>
+
+    <!-- Botón para reproducir audio en móviles -->
+    <div id="audioControls" class="audio-controls">
+      <button id="playButton" class="play-button">🎵</button>
+    </div>
     <div class="greetings">
       <span>H</span>
       <span>o</span>
@@ -34,5 +41,53 @@
     <div class="button">
       <a href="./pages/flowers.html">CLICK AQUI</a>
     </div>
+
+    <script>
+      // Detectar si es dispositivo móvil
+      const isMobile =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+
+      const audio = document.getElementById("backgroundAudio");
+      const playButton = document.getElementById("playButton");
+      const audioControls = document.getElementById("audioControls");
+
+      // En escritorio, intentar reproducir automáticamente
+      if (!isMobile) {
+        audio.play().catch((e) => {
+          console.log("Autoplay bloqueado:", e);
+          audioControls.style.display = "block";
+        });
+      } else {
+        // En móviles, mostrar el botón de reproducción
+        audioControls.style.display = "block";
+      }
+
+      // Manejar clic en el botón de reproducción
+      playButton.addEventListener("click", () => {
+        if (audio.paused) {
+          audio
+            .play()
+            .then(() => {
+              playButton.textContent = "🔊";
+              audioControls.style.opacity = "0.3";
+            })
+            .catch((e) => {
+              console.log("Error al reproducir:", e);
+            });
+        } else {
+          audio.pause();
+          playButton.textContent = "🎵";
+        }
+      });
+
+      // Ocultar controles después de que el usuario interactúe
+      audio.addEventListener("play", () => {
+        setTimeout(() => {
+          audioControls.style.opacity = "0.3";
+        }, 2000);
+      });
+    </script>
   </body>
 </html>
