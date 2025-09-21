@@ -9,49 +9,6 @@
   </head>
 
   <body>
-    <audio
-      id="backgroundAudio"
-      src="./assets/sounds/ChristianBasso&HaienQiu-Flowers.mp3"
-      loop
-    ></audio>
-
-    <script>
-      // Fix for mobile audio autoplay
-      let audioPlayed = false;
-      const audio = document.getElementById("backgroundAudio");
-      const audioHint = document.getElementById("audioHint");
-
-      // Function to play audio
-      function playAudio() {
-        if (!audioPlayed) {
-          audio
-            .play()
-            .then(() => {
-              // Hide the audio hint when audio starts playing
-              if (audioHint) {
-                audioHint.style.opacity = "0";
-                setTimeout(() => {
-                  audioHint.style.display = "none";
-                }, 500);
-              }
-            })
-            .catch((e) => {
-              console.log("Audio play failed:", e);
-            });
-          audioPlayed = true;
-        }
-      }
-
-      // Play audio on first user interaction
-      document.addEventListener("click", playAudio, { once: true });
-      document.addEventListener("touchstart", playAudio, { once: true });
-      document.addEventListener("keydown", playAudio, { once: true });
-    </script>
-
-    <div id="audioHint" class="audio-hint">
-      <span>🎵 Toca para reproducir música</span>
-    </div>
-
     <div class="greetings">
       <span>H</span>
       <span>o</span>
@@ -73,5 +30,11 @@
     <div class="button">
       <a href="./pages/flowers.html">CLICK AQUI</a>
     </div>
+
+    <audio
+      src="./assets/sounds/ChristianBasso&HaienQiu-Flowers.mp3"
+      autoplay
+      loop
+    ></audio>
   </body>
 </html>
